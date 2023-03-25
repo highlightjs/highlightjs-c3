@@ -11,7 +11,7 @@ export default function(hljs) {
     className: 'number',
     variants: [
       { begin: '\\b(0b[01\']+)' },
-      { begin: '(u|u8|u16|u32|u64|u128|i8|i16|i32|i64|i128|f|f16|bf16|f32|f64|f128)' },
+      { begin: '(-?)\\b([\\d\']+(\\.[\\d\']*)?|\\.[\\d\']+)((ll|LL|l|L)(u|U)?|(u|U)(ll|LL|l|L)?|f|F|b|B)' },
       { begin: '(-?)(\\b0[xX][a-fA-F0-9\']+|(\\b[\\d\']+(\\.[\\d\']*)?|\\.[\\d\']+)([eE][-+]?[\\d\']+)?)' }
     ],
     relevance: 0
@@ -21,7 +21,7 @@ export default function(hljs) {
     className: 'string',
     variants: [
       {
-        begin: '(x|b64)?"',
+        begin: '(u8?|U|L)?"',
         end: '"',
         illegal: '\\n',
         contains: [ hljs.BACKSLASH_ESCAPE ]
@@ -32,7 +32,7 @@ export default function(hljs) {
         illegal: '.'
       },
       hljs.END_SAME_AS_BEGIN({
-        begin: /(?:u8?|U|L)?([^()\\ ]{0,16})\(/,
+        begin: /(?:u8?|U|L)?R"([^()\\ ]{0,16})\(/,
         end: /\)([^()\\ ]{0,16})"/
       })
     ]
@@ -66,7 +66,8 @@ export default function(hljs) {
     ]
   };
   const regex = hljs.regex;
-  const NAMESPACE_RE = '[a-z_]\\w*::';
+  const DECLTYPE_AUTO_RE = 'decltype\\(auto\\)';
+  const NAMESPACE_RE = '[a-zA-Z_]\\w*::';
   const TEMPLATE_ARGUMENT_RE = '<[^<>]+>';
   const FUNCTION_TYPE_RE = '('
     + DECLTYPE_AUTO_RE + '|'
@@ -87,7 +88,7 @@ export default function(hljs) {
     keywords: KEYWORDS,
     illegal: /[^\w\s\*&:<>.]/,
     contains: [
-      {
+      { // to prevent it from being confused as the function title
         begin: DECLTYPE_AUTO_RE,
         keywords: KEYWORDS,
         relevance: 0
@@ -97,6 +98,12 @@ export default function(hljs) {
         returnBegin: true,
         contains: [ hljs.inherit(TITLE_MODE, { className: "title.function" }) ],
         relevance: 0
+      },
+      // allow for multiple declarations, e.g.:
+      // extern void f(int), g(char);
+      {
+        relevance: 0,
+        match: /,/
       },
       {
         className: 'params',
@@ -110,6 +117,7 @@ export default function(hljs) {
           STRINGS,
           NUMBERS,
           TYPES,
+          // Count matching parentheses.
           {
             begin: /\(/,
             end: /\)/,
