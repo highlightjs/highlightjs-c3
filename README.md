@@ -7,20 +7,20 @@ Load the module after loading highlight.js.  You'll use the minified version fou
 ```html
 <!DOCTYPE html>
 <head>
-	<link rel="stylesheet" href="monokai-sublime.min.css">
-	<script src="highlight.min.js"></script>
-	<script type="text/javascript" src="c3.min.js"></script>
-	<script>hljs.highlightAll();</script>
+<link rel="stylesheet" href="monokai-sublime.min.css">
+<script src="highlight.min.js"></script>
+<script type="text/javascript" src="c3.min.js"></script>
+<script>hljs.highlightAll();</script>
 </head>
 <body>
-	<pre><code class="c3">
-		import std::io;
-		
-		fn void main()
-		{
-			io::printfn("hello, world");
-		}
-	</code></pre>
+<pre><code class="c3">
+import std::io;
+
+fn void main()
+{
+	io::printfn("hello, world");
+}
+</code></pre>
 </body>
 </html>
 ```
