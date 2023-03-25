@@ -1,3 +1,5 @@
+![logo](logo.svg)
+
 # The C3 Programming Language for highlight.js
 
 ## Usage
