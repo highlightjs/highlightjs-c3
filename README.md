@@ -1,5 +1,3 @@
-![logo](logo.svg =100x100)
-
 # The C3 Programming Language for highlight.js
 
 ## Usage
