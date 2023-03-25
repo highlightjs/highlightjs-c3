@@ -1,0 +1,7 @@
+import std::io;
+
+fn void main()
+{
+	/* visit /* learn-c3.org */ to learn more */
+	io::printfn("hello, world");
+}
