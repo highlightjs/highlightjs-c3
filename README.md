@@ -2,6 +2,8 @@
 
 ## Usage
 
+### Static website or simple usage
+
 Load the module after loading highlight.js.  You'll use the minified version found in the `dist` directory. This module is just a CDN build of the language, so it will register itself as the Javascript is loaded.
 
 ```html
@@ -23,6 +25,18 @@ fn void main()
 </code></pre>
 </body>
 </html>
+```
+
+### With Node or another build system
+
+If you're using Node / Webpack / Rollup / Browserify, etc, simply require the language module, then register it with Highlight.js.
+
+```javascript
+var hljs = require('highlight.js');
+var hljsC3 = require('highlightjs-c3');
+
+hljs.registerLanguage("c3", hljsC3);
+hljs.highlightAll();
 ```
 
 ## Links
