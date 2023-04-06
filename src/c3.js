@@ -37,7 +37,7 @@ export default function(hljs) {
       })
     ]
   };
-  const C3_KEYWORDS = "alias as assert asm bitstruct break case catch const continue define default defer do else enum extern false fault for foreach foreach_r fn generic tlocal if import macro module nextcase null private return static struct switch true try union var while typedef";
+  const C3_KEYWORDS = "alias as assert asm bitstruct break case catch const continue define default defer do else enum extern false fault for foreach foreach_r fn generic tlocal if import macro module nextcase null private return static struct switch true try union var while typedef distinct initialize finalize inline";
   const KEYWORDS = {
     keyword: C3_KEYWORDS,
   };
@@ -55,7 +55,7 @@ export default function(hljs) {
     className: 'type',
     variants: [
       { begin: '\\b[A-Z]+[0-9a-zA-Z_]*[a-z]+[0-9a-zA-Z_]*!?' },
-      { begin: '\\bvoid!?|\\bbool!?|\\bchar!?|\\bdouble!?|\\bfloat!?|\\bfloat16!?|\\bint!?|\\bint128!?|\\bichar!?|\\biptr!?|\\bisz!?|\\blong!?|\\bshort!?|\\buint128!?|\\buint!?|\\bulong!?|\\buptr!?|\\bushort!?|\\busz!?|\\bfloat128!?|\\bvariant!?|\\banyerr!?|\\btypeid!?|\\bireg!?|\\bureg!?' },
+      { begin: '\\bvoid!?|\\bbool!?|\\bchar!?|\\bdouble!?|\\bfloat16!?|\\bbfloat16!?|\\bfloat128!?|\\bint128!?|\\bint!?|\\bichar!?|\\biptr!?|\\bisz!?|\\blong!?|\\bshort!?|\\buint128!?|\\buint!?|\\bulong!?|\\buptr!?|\\bushort!?|\\busz!?|\\bfloat!?|\\bvariant!?|\\banyerr!?|\\btypeid!?|\\bireg!?|\\bureg!?' },
       { begin: '\\$vatype|\\$typeof|\\$typefrom' }
     ]
   };
